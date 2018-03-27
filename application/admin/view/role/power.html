@@ -1,0 +1,297 @@
+<!-- BEGIN PAGE -->
+
+<div class="page-content">
+
+    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <div id="portlet-config" class="modal hide">
+
+        <div class="modal-header">
+
+            <button data-dismiss="modal" class="close" type="button"></button>
+
+            <h3>portlet Settings</h3>
+
+        </div>
+
+        <div class="modal-body">
+
+            <p>Here will be a configuration form</p>
+
+        </div>
+
+    </div>
+
+    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <!-- BEGIN PAGE CONTAINER-->        
+
+    <div class="container-fluid">
+
+        <!-- BEGIN PAGE HEADER-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN STYLE CUSTOMIZER -->
+
+                <div class="color-panel hidden-phone">
+
+                    <div class="color-mode-icons icon-color"></div>
+
+                    <div class="color-mode-icons icon-color-close"></div>
+
+                    <div class="color-mode">
+
+                        <p>THEME COLOR</p>
+
+                        <ul class="inline">
+
+                            <li class="color-black current color-default" data-style="default"></li>
+
+                            <li class="color-blue" data-style="blue"></li>
+
+                            <li class="color-brown" data-style="brown"></li>
+
+                            <li class="color-purple" data-style="purple"></li>
+
+                            <li class="color-grey" data-style="grey"></li>
+
+                            <li class="color-white color-light" data-style="light"></li>
+
+                        </ul>
+
+                        <label>
+
+                            <span>Layout</span>
+
+                            <select class="layout-option m-wrap small">
+
+                                <option value="fluid" selected>Fluid</option>
+
+                                <option value="boxed">Boxed</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Header</span>
+
+                            <select class="header-option m-wrap small">
+
+                                <option value="fixed" selected>Fixed</option>
+
+                                <option value="default">Default</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Sidebar</span>
+
+                            <select class="sidebar-option m-wrap small">
+
+                                <option value="fixed">Fixed</option>
+
+                                <option value="default" selected>Default</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Footer</span>
+
+                            <select class="footer-option m-wrap small">
+
+                                <option value="fixed">Fixed</option>
+
+                                <option value="default" selected>Default</option>
+
+                            </select>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <!-- END BEGIN STYLE CUSTOMIZER -->  
+
+                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                <h3 class="page-title">
+
+                    权限管理
+
+                </h3>
+
+                <ul class="breadcrumb">
+
+                    <li>
+
+                        <i class="icon-home"></i>
+
+                        <a href="index.html">后台管理</a> 
+
+                        <i class="icon-angle-right"></i>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">权限管理</a>
+
+
+                    </li>
+
+
+
+                </ul>
+
+                <!-- END PAGE TITLE & BREADCRUMB-->
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE HEADER-->
+
+        <!-- BEGIN PAGE CONTENT-->
+           <form action="{:url('admin/role/poweradd')}" method='post'/>
+           <input type="hidden" name="role_id" value="{$id}"/>
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+
+                <div class="portlet box blue">
+
+                    <div class="portlet-title">
+
+                        <div class="caption"><i class="icon-edit"></i>权限选择</div>
+
+                        <div class="tools">
+
+                            <a href="javascript:;" class="collapse"></a>
+
+                            <a href="javascript:;" class="reload"></a>
+
+                            <a href="javascript:;" class="remove"></a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="portlet-body">
+
+                       
+                    <ul id="myTab" class="nav nav-tabs">
+                        {foreach $one as $k=>$v}
+                            <li {if condition="$k eq 0"} class="active" {/if}>
+                                    <a href="#tab_{$v.id}" data-toggle="tab">
+                                             {$v.name}
+                                    </a>
+                            </li>
+                          {/foreach} 
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        {foreach $list as $k1=>$v1}
+                            <div class="tab-pane fade in {if condition="$k1 eq 0"} active {/if}" id="tab_{$v1.id}" >
+                                <label>
+                                <input type="checkbox" name="power[]" data-id="{$v1.id}" data-level="1" value="{$v1.id}" {if condition="isset($checkList[$v1.id])"} checked="true"{/if}/>{$v1.name}
+                                </label>
+                                </br>
+                                {if condition="isset($v1.child)"}
+                                    {foreach $v1.child as $k2=>$v2}
+                                        <label>
+                                            &nbsp;&nbsp;&nbsp;<input type="checkbox" name="power[]" data-id="{$v1.id}" data-level="2" data-twoid="{$v2.name}" value="{$v2.id}" {if condition="isset($checkList[$v2.id])"} checked="true"{/if}/>{$v2.name}：
+                                        {if condition="isset($v2.child)"}
+                                            {foreach $v2.child as $k3=>$v3}
+                                                    &nbsp;&nbsp;&nbsp;<input type="checkbox" name="power[]" data-id="{$v1.id}" data-level="3" data-twoid="{$v2.name}" value="{$v3.id}" {if condition="isset($checkList[$v3.id])"} checked="true"{/if}/>{$v3.name}
+                                            {/foreach}
+                                        {/if}
+                                        </label>
+                                    {/foreach}
+                                {/if}
+                                
+                            </div>
+                         {/foreach} 
+                    </div>
+                        <div class="form-actions" style="background-color: white;">
+                            <button type="submit" class="btn green">提交</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- END EXAMPLE TABLE PORTLET-->
+
+            </div>
+
+        </div>
+        
+    
+    </div>
+</from>
+    <!-- END PAGE CONTAINER-->
+
+</div>
+
+<!-- END PAGE -->
+<script type="text/javascript">
+    $(function(){
+        var allCheckBox = $("input[type='checkbox']");
+        allCheckBox.click(function(){
+            var id = ($(this).data("id"));
+            var level = $(this).data("level");
+            var status = $(this).prop("checked");
+            if(level ==1){
+                $(":checkbox[data-id='"+id+"']").each(function(){
+                    if(status){
+                        $(this).parent().addClass("checked");
+                        $(this).prop("checked",true);
+                    }else{
+                         $(this).parent().removeClass("checked");
+                        $(this).prop("checked",false);
+                    }
+                })
+            }else if(level ==2){
+                var twoid = $(this).data("twoid");
+                if(status){
+                      $(":checkbox[data-id='"+id+"'][data-level='1']").parent().addClass("checked");
+                        $(":checkbox[data-id='"+id+"'][data-level='1']").prop("checked",true);
+                        $(":checkbox[data-twoid='"+twoid+"'][data-level='3']").parent().addClass("checked");
+                        $(":checkbox[data-twoid='"+twoid+"'][data-level='3']").prop("checked",true);
+                }else{
+                      $(":checkbox[data-id='"+id+"'][data-level='1']").parent().addClass("checked");
+                    $(":checkbox[data-id='"+id+"'][data-level='1']").prop("checked",true);
+                    $(":checkbox[data-twoid='"+twoid+"'][data-level='3']").parent().removeClass("checked");
+                    $(":checkbox[data-twoid='"+twoid+"'][data-level='3']").prop("checked",false);
+                }
+              
+            }
+            else if(level ==3){
+                    var twoid = $(this).data("twoid");
+                    if(status){
+                          $(":checkbox[data-id='"+id+"'][data-level='1']").parent().addClass("checked");
+                            $(":checkbox[data-id='"+id+"'][data-level='1']").prop("checked",true);
+                            $(":checkbox[data-twoid='"+twoid+"'][data-level='2']").parent().addClass("checked");
+                            $(":checkbox[data-twoid='"+twoid+"'][data-level='2']").prop("checked",true);
+                    }else{
+                          $(":checkbox[data-id='"+id+"'][data-level='1']").parent().addClass("checked");
+                        $(":checkbox[data-id='"+id+"'][data-level='1']").prop("checked",true);
+                        $(":checkbox[data-twoid='"+twoid+"'][data-level='2']").parent().removeClass("checked");
+                        $(":checkbox[data-twoid='"+twoid+"'][data-level='2']").prop("checked",false);
+                    }
+            }
+        })
+    })
+</script>

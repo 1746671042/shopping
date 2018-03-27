@@ -1,0 +1,463 @@
+<!-- BEGIN PAGE -->  
+
+<div class="page-content">
+
+    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <div id="portlet-config" class="modal hide">
+
+        <div class="modal-header">
+
+            <button data-dismiss="modal" class="close" type="button"></button>
+
+            <h3>portlet Settings</h3>
+
+        </div>
+
+        <div class="modal-body">
+
+            <p>Here will be a configuration form</p>
+
+        </div>
+
+    </div>
+
+    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <!-- BEGIN PAGE CONTAINER-->
+
+    <div class="container-fluid">
+
+        <!-- BEGIN PAGE HEADER-->   
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN STYLE CUSTOMIZER -->
+
+                <div class="color-panel hidden-phone">
+
+                    <div class="color-mode-icons icon-color"></div>
+
+                    <div class="color-mode-icons icon-color-close"></div>
+
+                    <div class="color-mode">
+
+                        <p>THEME COLOR</p>
+
+                        <ul class="inline">
+
+                            <li class="color-black current color-default" data-style="default"></li>
+
+                            <li class="color-blue" data-style="blue"></li>
+
+                            <li class="color-brown" data-style="brown"></li>
+
+                            <li class="color-purple" data-style="purple"></li>
+
+                            <li class="color-grey" data-style="grey"></li>
+
+                            <li class="color-white color-light" data-style="light"></li>
+
+                        </ul>
+
+                        <label>
+
+                            <span>Layout</span>
+
+                            <select class="layout-option m-wrap small">
+
+                                <option value="fluid" selected>Fluid</option>
+
+                                <option value="boxed">Boxed</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Header</span>
+
+                            <select class="header-option m-wrap small">
+
+                                <option value="fixed" selected>Fixed</option>
+
+                                <option value="default">Default</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Sidebar</span>
+
+                            <select class="sidebar-option m-wrap small">
+
+                                <option value="fixed">Fixed</option>
+
+                                <option value="default" selected>Default</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Footer</span>
+
+                            <select class="footer-option m-wrap small">
+
+                                <option value="fixed">Fixed</option>
+
+                                <option value="default" selected>Default</option>
+
+                            </select>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <!-- END BEGIN STYLE CUSTOMIZER -->     
+
+                <h3 class="page-title">
+                 商品修改
+                </h3>
+
+                <ul class="breadcrumb">
+
+                    <li>
+
+                        <i class="icon-home"></i>
+
+                        <a href="index.html">后台管理</a> 
+
+                        <span class="icon-angle-right"></span>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">商品管理</a>
+
+                        <span class="icon-angle-right"></span>
+
+                    </li>
+
+                    <li><a href="#">商品修改</a></li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE HEADER-->
+
+        <!-- BEGIN PAGE CONTENT-->
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN VALIDATION STATES-->
+
+                <div class="portlet box green">
+
+                    <div class="portlet-title">
+
+                        <div class="caption"><i class="icon-reorder"></i>添加信息</div>
+
+                        <div class="tools">
+
+                            <a href="javascript:;" class="collapse"></a>
+
+                            <a href="javascript:;" class="reload"></a>
+
+                            <a href="javascript:;" class="remove"></a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="portlet-body form">
+
+                        <!-- BEGIN FORM-->
+
+                        <form action="{:url('admin/product/update')}" method="post" id="form_sample_2" class="form-horizontal">
+
+                            <ul id="myTab" class="nav nav-tabs">
+                                        <li class="active">
+                                                <a href="#jiben" data-toggle="tab">
+                                                         基本信息
+                                                </a>
+                                        </li>
+                                        <li class="">
+                                                <a href="#tuozhan" data-toggle="tab">
+                                                         拓展信息
+                                                </a>
+                                        </li>
+                                        <li class="">
+                                                <a href="#miaoshu" data-toggle="tab">
+                                                         描述
+                                                </a>
+                                        </li>
+                                        <li class="">
+                                                <a href="#xiangce" data-toggle="tab">
+                                                         相册
+                                                </a>
+                                        </li>
+                                       
+                                </ul>
+                                <div id="myTabContent" class="tab-content">
+                                        <div class="tab-pane fade in active" id="jiben">
+                                            <input type='hidden' value='{$list.id}'name='id'}/>
+                                                 <div class="control-group">
+                                                        <label class="control-label">名称:</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="title" data-required="1" class="span6 m-wrap" value='{$list.title}'/>
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group">
+                                                        <label class="control-label">通用代码:</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="upc" data-required="1" class="span6 m-wrap" value='{$list.upc}'/>
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group">
+                                                        <label class="control-label">图像:</label>
+                                                        <div class="controls" id="big_image">
+                                                             
+                                                            <img src="{$list.image_file}" width="100" id="upload_img"/>
+                                                            <button type="button" id="upload" style="display: none;">上传图片</button>
+                                                            <input type="file" value="" name="myfile" class="m-wrap small" style="display:none;"/>
+                                                            <input type="hidden" value="{$list.image_file}" id="upload_url" name="image_file"/>
+
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group">
+                                                        <label class="control-label">库存:</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="quantity" data-required="1" class="span6 m-wrap" value='{$list.quantity}'/>
+                                                            <select name="sku_id">
+                                                                {foreach $Inver_unit as $k=>$v}
+                                                                <option value='{$v.id}' {if condition='($list.sku_id-1) eq $k'}selected {/if}>{$v.inventory_unit}</option>
+                                                                {/foreach}
+                                                            </select>
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group">
+                                                        <label class="control-label">库存状态:</label>
+                                                        <div class="controls">
+                                                            <select name="stock_status_id" >
+                                                                 {foreach $State as $k=>$v}
+                                                                <option value='{$v.id}' {if condition='($list.stock_status_id) eq $k'}selected {/if}>{$v.state}</option>
+                                                                {/foreach}
+                                                            </select>
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group">
+                                                        <label class="control-label">售价:</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="price" data-required="1" class="span6 m-wrap" value='{$list.price}'/>
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group">
+                                                        <label class="control-label">原价:</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="price_origin" data-required="1" class="span6 m-wrap" value='{$list.price_origin}'/>
+                                                        </div>
+                                                 </div>
+                                                <div class="control-group">
+                                                        <label class="control-label">品牌:</label>
+                                                        <div class="controls">
+                                                            <select name="brand_id" >
+                                                                <option value="0">请选择</option>
+                                                                    {foreach $brand as $k=>$v}
+                                                                    <option value="{$v.id}" >{$v.title}</option>
+                                                                    {/foreach}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group">
+                                                        <label class="control-label">分类:</label>
+                                                        <div class="controls">
+                                                           <select name="group_id">
+                                                                <option value="0">顶级分类</option>
+                                                                {foreach $type as $k=>$v}
+                                                                <option value="{$v.id}">{$v.name}</option>
+                                                                {/foreach}
+                                                            </select>
+                                                        </div>
+                                                 </div>
+                                             <div class="form-actions">
+                                                    <button type="submit" class="btn green">提交</button>
+                                                    <button type="button" class="btn">取消</button>
+                                            </div>
+                                           
+                                        </div>
+                                     
+                                    
+                                    
+                                    
+                                        <div class="tab-pane fade" id="tuozhan">
+                                                <div class="control-group">
+                                                        <label class="control-label">扣减库存:</label>
+                                                        <div class="controls">
+                                                            <input type="radio" name="is_subtract" data-required="1" class="span6 m-wrap" value="{$list.is_subtract}" {if condition='$list.is_subtract eq 1'}checked{/if}/>是
+                                                            <input type="radio" name="is_subtract" data-required="1" class="span6 m-wrap" value="{$list.is_subtract}" {if condition='$list.is_subtract eq 2'}checked{/if}/>否
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group" id="big_image">
+                                                        <label class="control-label">最少起送:</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="minimum" data-required="1" class="span6 m-wrap" value='{$list.minimum}'/>
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group">
+                                                        <label class="control-label">配送支持:</label>
+                                                        <div class="controls">
+                                                            <input type="radio" name="is_shipping" data-required="1" class="span6 m-wrap" value="{$list.is_shipping}" {if condition='$list.is_shipping eq 1'}checked{/if}/>是
+                                                            <input type="radio" name="is_shipping" data-required="1" class="span6 m-wrap" value="{$list.is_shipping}" {if condition='$list.is_shipping eq 2'}checked{/if}/>否
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group">
+                                                        <label class="control-label">起售时间:</label>
+                                                        <div class="controls">
+                                                            <input type="datetime-local" name="date_available" value="{$list.date_available}" id=""/>
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group">
+                                                        <label class="control-label">尺寸:</label>
+                                                        <div class="controls">
+                                                            长:<input type="text" name="length" data-required="1" class="span2 m-wrap" value='{$list.length}'/>
+                                                            宽：<input type="text" name="width" data-required="1" class="span2 m-wrap" value='{$list.width}'/>
+                                                            高：<input type="text" name="height" data-required="1" class="span2 m-wrap" value='{$list.height}'/>
+                                                            <select name="lenght_unit_id">
+                                                                {foreach $dimensional as $w=>$x}
+                                                                <option value='{$x.id}' {if condition='($list.lenght_unit_id-1) eq $w'}selected {/if}>{$x.Dimensional}</option>
+                                                                {/foreach}
+                                                            </select>
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group">
+                                                        <label class="control-label">重量:</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="weight" data-required="1" class="span6 m-wrap" value='{$list.weight}'/>
+                                                            <select name="weight_unit_id">
+                                                                {foreach $weight as $t=>$c}
+                                                                <option value='{$c.id}' {if condition='($list.weight_unit_id-1) eq $t'}selected {/if}>{$c.weight}</option>
+                                                                {/foreach}
+                                                            </select>
+                                                        </div>
+                                                 </div>
+                                                <div class="control-group">
+                                                        <label class="control-label">是否上架:</label>
+                                                        <div class="controls">
+                                                           <input type="radio" name="is_sale" data-required="1" class="span6 m-wrap" value="{$list.is_sale}" {if condition='$list.is_sale eq 1'}checked{/if}/>是
+                                                            <input type="radio" name="is_sale" data-required="1" class="span6 m-wrap" value="{$list.is_sale}" {if condition='$list.is_sale eq 2'}checked{/if}/>否
+                                                        </div>
+                                                 </div>
+                                                 <div class="control-group">
+                                                        <label class="control-label">排序:</label>
+                                                        <div class="controls">
+                                                          <input type="text" name="sort" data-required="1" class="span6 m-wrap" value='{$list.sort}'/>
+                                                        </div>
+                                                 </div>
+                                             
+                                        </div>
+                                        <div class="tab-pane fade" id="miaoshu">
+                                            <script id="productDesc" type="text/plain" style="width:800px;height:400px;" name="productDesc">{$list.productDesc}</script>
+                                                  <div class="form-actions">
+                                                    <button type="submit" class="btn green">提交</button>
+                                                    <button type="button" class="btn">取消</button>
+                                                  </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="xiangce">
+                                               <table id="table" class="table table-striped table-hover table-bordered">
+                                                   <tr>
+                                                       <td>图片</td>
+                                                       <td>描述</td>
+                                                       <td>排序</td>
+                                                       <td class="add">+</td>
+                                                   </tr>
+                                               </table>
+                                        </div>
+                                </div>
+                        </form>
+
+                        <!-- END FORM-->
+
+                    </div>
+
+                </div>
+
+                <!-- END VALIDATION STATES-->
+
+            </div>
+
+        </div>
+        
+
+        <!-- END PAGE CONTENT-->         
+
+    </div>
+
+    <!-- END PAGE CONTAINER-->
+
+</div>
+
+<!-- END PAGE --> 
+<script type="text/javascript">
+     $(function(){
+        //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    UE.getEditor('productDesc');
+
+//       $("#upload").click(function(){
+//            $("input[type='file']").click();
+//        })
+        $("#upload_img").click(function(){
+            $("input[type='file']").click();
+        })
+       
+       
+       //ajax上传图片
+       $("#big_image input[type='file']").change(function(){
+           //实例化formData表单
+           var formData = new FormData($("form")[0]);
+           //formData追加元素
+           formData.append("file", $("#big_image input[type='file']")[0].files[0]);
+           $.ajax({
+              type:"post",
+              url:"{:url('admin/product/upload')}",
+              data:formData,
+              contentType:false,
+              processData:false,
+              success:function(data){
+                  if(data.status){
+                        $("#upload_img").attr("src",data.data.file);
+                        $("#upload_url").val(data.data.file);
+                        $("#upload").hide();
+                        $("#upload_img").show();
+                    }
+                }
+            })
+        })
+       
+       
+       $(".add").click(function(){
+           $str = "<tr><td><img src='/upload/20180323\951d223a97f9ee76fb1f40ded1bbc2be.jpg' width='100' value='static_url'/></td><td><input type='text' name='meta_title'/></td><td><input type='text' name='meta_description'/></td><td class='del'>删除</td></tr>";
+           $("#table").append($str);
+
+       });
+       //监控页面中后添加的元素
+      $('body').on("click",".del",function(){
+          $(this).parent().remove();
+       });
+    });
+</script>

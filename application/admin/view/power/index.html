@@ -1,0 +1,296 @@
+<!-- BEGIN PAGE -->
+
+<div class="page-content">
+
+    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <div id="portlet-config" class="modal hide">
+
+        <div class="modal-header">
+
+            <button data-dismiss="modal" class="close" type="button"></button>
+
+            <h3>portlet Settings</h3>
+
+        </div>
+
+        <div class="modal-body">
+
+            <p>Here will be a configuration form</p>
+
+        </div>
+
+    </div>
+
+    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <!-- BEGIN PAGE CONTAINER-->        
+
+    <div class="container-fluid">
+
+        <!-- BEGIN PAGE HEADER-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN STYLE CUSTOMIZER -->
+
+                <div class="color-panel hidden-phone">
+
+                    <div class="color-mode-icons icon-color"></div>
+
+                    <div class="color-mode-icons icon-color-close"></div>
+
+                    <div class="color-mode">
+
+                        <p>THEME COLOR</p>
+
+                        <ul class="inline">
+
+                            <li class="color-black current color-default" data-style="default"></li>
+
+                            <li class="color-blue" data-style="blue"></li>
+
+                            <li class="color-brown" data-style="brown"></li>
+
+                            <li class="color-purple" data-style="purple"></li>
+
+                            <li class="color-grey" data-style="grey"></li>
+
+                            <li class="color-white color-light" data-style="light"></li>
+
+                        </ul>
+
+                        <label>
+
+                            <span>Layout</span>
+
+                            <select class="layout-option m-wrap small">
+
+                                <option value="fluid" selected>Fluid</option>
+
+                                <option value="boxed">Boxed</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Header</span>
+
+                            <select class="header-option m-wrap small">
+
+                                <option value="fixed" selected>Fixed</option>
+
+                                <option value="default">Default</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Sidebar</span>
+
+                            <select class="sidebar-option m-wrap small">
+
+                                <option value="fixed">Fixed</option>
+
+                                <option value="default" selected>Default</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Footer</span>
+
+                            <select class="footer-option m-wrap small">
+
+                                <option value="fixed">Fixed</option>
+
+                                <option value="default" selected>Default</option>
+
+                            </select>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <!-- END BEGIN STYLE CUSTOMIZER -->  
+
+                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                <h3 class="page-title">
+
+                    权限管理
+
+                </h3>
+
+                <ul class="breadcrumb">
+
+                    <li>
+
+                        <i class="icon-home"></i>
+
+                        <a href="index.html">后台管理</a> 
+
+                        <i class="icon-angle-right"></i>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">权限管理</a>
+
+
+                    </li>
+
+
+
+                </ul>
+
+                <!-- END PAGE TITLE & BREADCRUMB-->
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE HEADER-->
+
+        <!-- BEGIN PAGE CONTENT-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+
+                <div class="portlet box blue">
+
+                    <div class="portlet-title">
+
+                        <div class="caption"><i class="icon-edit"></i>可编辑</div>
+
+                        <div class="tools">
+
+                            <a href="javascript:;" class="collapse"></a>
+
+                            <a href="javascript:;" class="reload"></a>
+
+                            <a href="javascript:;" class="remove"></a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="portlet-body">
+
+                        <div class="clearfix">
+
+                            <div class="btn-group">
+
+                                <a href="{:url('admin/power/add')}"  id="sample_editable_1_new" class="btn green">
+
+                                    增加 
+
+                                </a>
+
+                            </div>
+                        </div>
+                       <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+
+                            <thead>
+
+                                <tr>
+                                    <th>id</th>
+                            
+                                    <th>权限名称</th>
+                           
+                                    <th>控制器</th>
+
+                                    <th>方法</th>
+
+                                    <th>是否显示</th>
+                                    
+                                    <th>添加事件</th>
+                                    
+                                     <th>修改时间</th>
+                                     
+                                    <th>操作</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                               {foreach $list as $v}
+                                    <tr>
+                                        <td>{$v.id}</td>
+                                        <td style="color: rosybrown;">|-{$v.name}</td>
+                                        <td>{$v.controller}</td>
+                                        <td>{$v.action}</td>
+                                        <td>{$v.is_show}</td>
+                                        <td>{$v.create_time}</td>
+                                        <td>{$v.update_time}</td>
+                                        <td><a href="{:url('admin/power/addChild',['parent_id'=>$v.id])}"/>添加下一级</a>|<a href="{:url('admin/power/update',['parent_id'=>$v.id])}"/>修改</a>|<a href="{:url('admin/power/delete',['parent_id'=>$v.id])}"/>删除</a></td>
+                                    </tr>
+                               
+                               
+                                    {if condition="isset($v.child)"}
+                                       {foreach $v.child as $v1}
+                                         <tr>
+                                              <td>{$v1.id}</td>
+                                              <td style="color: red;">|----{$v1.name}</td>
+                                              <td>{$v1.controller}</td>
+                                              <td>{$v1.action}</td>
+                                              <td>{$v1.is_show}</td>
+                                              <td>{$v1.create_time}</td>
+                                              <td>{$v1.update_time}</td>
+                                              <td><a href="{:url('admin/power/addChild',['parent_id'=>$v1.id])}"/>添加下一级</a>|<a href="{:url('admin/power/update',['parent_id'=>$v1.id])}"/>修改</a>|<a href="{:url('admin/power/delete',['parent_id'=>$v1.id])}"/>删除</a></td>
+                                          </tr>
+                                          
+                                                   {if condition="isset($v1.child)"}
+                                                     {foreach $v1.child as $v2}
+                                                       <tr>
+                                                            <td>{$v2.id}</td>
+                                                            <td style="color: blue;">|----------{$v2.name}</td>
+                                                            <td>{$v2.controller}</td>
+                                                            <td>{$v2.action}</td>
+                                                            <td>{$v2.is_show}</td>
+                                                            <td>{$v2.create_time}</td>
+                                                            <td>{$v2.update_time}</td>
+                                                            <td><a href="{:url('admin/power/update',['parent_id'=>$v2.id])}"/>修改</a>|<a href="{:url('admin/power/delete',['parent_id'=>$v2.id])}"/>删除</a></td></td>
+                                                        </tr>
+                                                     {/foreach}
+                                                  {/if}
+                                       {/foreach}
+                                    {/if}
+
+                               {/foreach}
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <!-- END EXAMPLE TABLE PORTLET-->
+
+            </div>
+
+        </div>
+        
+    </div>
+
+    <!-- END PAGE CONTAINER-->
+
+</div>
+
+<!-- END PAGE -->

@@ -1,0 +1,298 @@
+<!-- BEGIN PAGE -->
+
+<div class="page-content">
+
+    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <div id="portlet-config" class="modal hide">
+
+        <div class="modal-header">
+
+            <button data-dismiss="modal" class="close" type="button"></button>
+
+            <h3>portlet Settings</h3>
+
+        </div>
+
+        <div class="modal-body">
+
+            <p>Here will be a configuration form</p>
+
+        </div>
+
+    </div>
+
+    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <!-- BEGIN PAGE CONTAINER-->        
+
+    <div class="container-fluid">
+
+        <!-- BEGIN PAGE HEADER-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN STYLE CUSTOMIZER -->
+
+                <div class="color-panel hidden-phone">
+
+                    <div class="color-mode-icons icon-color"></div>
+
+                    <div class="color-mode-icons icon-color-close"></div>
+
+                    <div class="color-mode">
+
+                        <p>THEME COLOR</p>
+
+                        <ul class="inline">
+
+                            <li class="color-black current color-default" data-style="default"></li>
+
+                            <li class="color-blue" data-style="blue"></li>
+
+                            <li class="color-brown" data-style="brown"></li>
+
+                            <li class="color-purple" data-style="purple"></li>
+
+                            <li class="color-grey" data-style="grey"></li>
+
+                            <li class="color-white color-light" data-style="light"></li>
+
+                        </ul>
+
+                        <label>
+
+                            <span>Layout</span>
+
+                            <select class="layout-option m-wrap small">
+
+                                <option value="fluid" selected>Fluid</option>
+
+                                <option value="boxed">Boxed</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Header</span>
+
+                            <select class="header-option m-wrap small">
+
+                                <option value="fixed" selected>Fixed</option>
+
+                                <option value="default">Default</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Sidebar</span>
+
+                            <select class="sidebar-option m-wrap small">
+
+                                <option value="fixed">Fixed</option>
+
+                                <option value="default" selected>Default</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Footer</span>
+
+                            <select class="footer-option m-wrap small">
+
+                                <option value="fixed">Fixed</option>
+
+                                <option value="default" selected>Default</option>
+
+                            </select>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <!-- END BEGIN STYLE CUSTOMIZER -->  
+
+                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                <h3 class="page-title">
+
+                    管理员管理
+
+                </h3>
+
+                <ul class="breadcrumb">
+
+                    <li>
+
+                        <i class="icon-home"></i>
+
+                        <a href="index.html">后台管理</a> 
+
+                        <i class="icon-angle-right"></i>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">管理员管理</a>
+
+
+                    </li>
+
+
+
+                </ul>
+
+                <!-- END PAGE TITLE & BREADCRUMB-->
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE HEADER-->
+
+        <!-- BEGIN PAGE CONTENT-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+
+                <div class="portlet box blue">
+
+                    <div class="portlet-title">
+
+                        <div class="caption"><i class="icon-edit"></i>可编辑</div>
+
+                        <div class="tools">
+
+                            <a href="javascript:;" class="collapse"></a>
+
+                            <a href="javascript:;" class="reload"></a>
+
+                            <a href="javascript:;" class="remove"></a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="portlet-body">
+
+                        <div class="clearfix">
+
+                            <div class="btn-group">
+
+                                <a href="{:url('admin/admin/add')}"  id="sample_editable_1_new" class="btn green">
+
+                                    增加 
+
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="search">
+                            <!--地址位空，默认当前地址-->
+                            <form action="" method="get">
+                                {foreach $query as $k=>$v}
+                                    {if condition="$k neq 'search_username' and $k neq 'search_role'"}
+                                        <input type='hidden' value='{$v}' name='{$k}'/>
+                                    {/if}
+                                {/foreach}
+                            用户名:<input type="text" name="search_username" class="m-wrap" value="{$search_name}"/>
+                            
+                            角色:<select name="search_role">
+                                        <option value="0">选择角色</option>
+                                        {foreach $role as $c}
+                                        <option value="{$c.id}" {if condition="$search_role eq $c.id"}selected{/if} >{$c.name}</option>
+                                        {/foreach}
+                                 </select>
+                            
+                            <input type="submit" value="搜索" class="btn green" />
+                            </form>
+                        </div>
+                        <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+
+                            <thead>
+
+                                <tr>
+                                    <th>id</th>
+                            
+                                    <th style="position: relative" onclick="window.location.href='?{$url}&order_field=username&order={if condition="$order.username eq 'asc'"}desc{else/}asc{/if}';"}'">用户名
+                                        <div class="order">
+                                        <span class="order_desc" {if condition="$order.username eq 'desc'"}style="border-bottom-color: red;"{/if}></span>
+                                        <span class="order_asc" {if condition="$order.username eq 'asc'"}style="border-top-color: red;"{/if}></span>
+                                        </div>
+                                    </th>
+                           
+                                    <th>角色</th>
+
+                                    <th>添加时间</th>
+
+                                    <th>修改时间</th>
+
+                                    <th>修改</th>
+
+                                    <th>删除</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                {foreach $list as $v}
+                                <tr class="">
+                                    <td>{$v.id}</td>
+                                    <td>{$v.username}</td>
+
+                                    <td>{$v->role->name}</td>
+
+                                    <td>{$v.create_time}</td>
+
+                                    <td class="center">{$v.update_time}</td>
+
+                                    <td><a class="delete" href="{:url('admin/admin/update',['id'=>$v.id])}">修改</a></td>
+
+                                    <td><a class="delete" href="{:url('admin/admin/delete',['id'=>$v.id])}">删除</a></td>
+
+                                </tr>
+                                {/foreach}
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <!-- END EXAMPLE TABLE PORTLET-->
+
+            </div>
+
+        </div>
+        
+        <!-- END PAGE CONTENT -->
+        <div class="pagination pagination-right">
+           {$list->render()}
+        </div>
+    </div>
+
+    <!-- END PAGE CONTAINER-->
+
+</div>
+
+<!-- END PAGE -->

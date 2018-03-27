@@ -1,0 +1,306 @@
+<!-- BEGIN PAGE -->
+
+<div class="page-content">
+
+    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <div id="portlet-config" class="modal hide">
+
+        <div class="modal-header">
+
+            <button data-dismiss="modal" class="close" type="button"></button>
+
+            <h3>portlet Settings</h3>
+
+        </div>
+
+        <div class="modal-body">
+
+            <p>Here will be a configuration form</p>
+
+        </div>
+
+    </div>
+
+    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+    <!-- BEGIN PAGE CONTAINER-->        
+
+    <div class="container-fluid">
+
+        <!-- BEGIN PAGE HEADER-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN STYLE CUSTOMIZER -->
+
+                <div class="color-panel hidden-phone">
+
+                    <div class="color-mode-icons icon-color"></div>
+
+                    <div class="color-mode-icons icon-color-close"></div>
+
+                    <div class="color-mode">
+
+                        <p>THEME COLOR</p>
+
+                        <ul class="inline">
+
+                            <li class="color-black current color-default" data-style="default"></li>
+
+                            <li class="color-blue" data-style="blue"></li>
+
+                            <li class="color-brown" data-style="brown"></li>
+
+                            <li class="color-purple" data-style="purple"></li>
+
+                            <li class="color-grey" data-style="grey"></li>
+
+                            <li class="color-white color-light" data-style="light"></li>
+
+                        </ul>
+
+                        <label>
+
+                            <span>Layout</span>
+
+                            <select class="layout-option m-wrap small">
+
+                                <option value="fluid" selected>Fluid</option>
+
+                                <option value="boxed">Boxed</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Header</span>
+
+                            <select class="header-option m-wrap small">
+
+                                <option value="fixed" selected>Fixed</option>
+
+                                <option value="default">Default</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Sidebar</span>
+
+                            <select class="sidebar-option m-wrap small">
+
+                                <option value="fixed">Fixed</option>
+
+                                <option value="default" selected>Default</option>
+
+                            </select>
+
+                        </label>
+
+                        <label>
+
+                            <span>Footer</span>
+
+                            <select class="footer-option m-wrap small">
+
+                                <option value="fixed">Fixed</option>
+
+                                <option value="default" selected>Default</option>
+
+                            </select>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <!-- END BEGIN STYLE CUSTOMIZER -->  
+
+                <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                <h3 class="page-title">
+
+                    类型管理
+
+                </h3>
+
+                <ul class="breadcrumb">
+
+                    <li>
+
+                        <i class="icon-home"></i>
+
+                        <a href="index.html">后台管理</a> 
+
+                        <i class="icon-angle-right"></i>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#">类型管理</a>
+
+
+                    </li>
+
+
+
+                </ul>
+
+                <!-- END PAGE TITLE & BREADCRUMB-->
+
+            </div>
+
+        </div>
+
+        <!-- END PAGE HEADER-->
+
+        <!-- BEGIN PAGE CONTENT-->
+
+        <div class="row-fluid">
+
+            <div class="span12">
+
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+
+                <div class="portlet box blue">
+
+                    <div class="portlet-title">
+
+                        <div class="caption"><i class="icon-edit"></i>可编辑</div>
+
+                        <div class="tools">
+
+                            <a href="javascript:;" class="collapse"></a>
+
+                            <a href="javascript:;" class="reload"></a>
+
+                            <a href="javascript:;" class="remove"></a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="portlet-body">
+
+                        <div class="clearfix">
+
+                            <div class="btn-group">
+
+                                <a href="{:url('admin/type/add')}"  id="sample_editable_1_new" class="btn green">
+
+                                    增加 
+
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="search">
+                            <!--地址位空，默认当前地址-->
+                            <form action="" method="get">
+                                
+                            
+                            </form>
+                        </div>
+                        <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+
+                            <thead>
+
+                                <tr>
+                                    <th>id</th>
+                            
+                                    <th>名称</th>
+                           
+                                    <th>排序</th>
+
+                                    <th>添加时间</th>
+
+                                    <th>修改时间</th>
+
+                                    <th>操作</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                {foreach $list as $k=>$v}
+                                <tr>
+                                    <td>{$v.id}</td>
+                                    <td data-level="{$v.level}" class="title" data-id="{$v.id}" data-pid="{$v.pid}">{$v.name}</td>
+                                    <td>{$v.sort}</td>
+                                    <td>{$v.create_time}</td>
+                                    <td>{$v.update_time}</td>
+                                    <td><a href="{:url('admin/Type/update',['id'=>$v.id])}">修改</a>|<a href="{:url('admin/Type/delete',['id'=>$v.id])}">删除</a></td>
+
+                                </tr>
+                                {/foreach}
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <!-- END EXAMPLE TABLE PORTLET-->
+
+            </div>
+
+        </div>
+        
+        <!-- END PAGE CONTENT -->
+       
+    </div>
+
+    <!-- END PAGE CONTAINER-->
+
+</div>
+
+<!-- END PAGE -->
+<script type="text/javascript">
+     $(function(){
+         $("td[class='title'][data-level!='1']").parent().hide();
+         //显示下一级(第一种)  
+         $("td[class='title']").click(function(){
+             var level = $(this).data("level");
+             var id =$(this).data("id");
+             $("td[class='title'][data-level='"+(level+1)+"'][data-pid='"+id+"']").parent().toggle();
+             $("td[class='title'][data-level='"+(level-1)+"'][data-pid='"+id+"']").hide();
+         })
+           $("td[class='title'][data-pid ='0']").click(function(){
+            
+         })
+          //第二种
+//          $("td[class='title']").click(function(){
+//              var level = $(this).data("level");
+//              var alltd = $("td[class='title']");
+//              //当前元素对应的下标
+//              var index = $("td[class='title']").index($(this));
+//
+//              //js语法
+//              for(var i=index+1;i<alltd.length;i++){
+//                               
+//                  //获取当前元素的后边的所有元素
+//                  var curtd = $(alltd[i]);
+//                  var curlevel = $(alltd[i]).data("level");
+//                  //新开始
+//                  if(curlevel<=level){
+//                      break;
+//                  }
+//                  if(curlevel == level+1){
+//                      //toggle 为互相切换
+//                      $(alltd[i]).parent().toggle();
+//                  }
+//              }
+//          })
+     })
+</script>
